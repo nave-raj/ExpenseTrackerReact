@@ -1,15 +1,17 @@
 extends layout
 
 block content
-  div
-    div
-      div
-        h1 #{title}
-        p This is a simple application for managing your expense
-        p Click the button below to view your list of expenses
-        br
-        a(href="") View Your Expenses
-        br
+  .container-fluid
+    .row
+      .col-md-8.offset-md-2
+        .text-center
+          h1.mb-4 #{title}
+          p This is a simple application for managing your expenses.
+          p Click the button below to view your list of expenses.
+          br
+          a.btn.btn-primary(href="/expenses") View Your Expenses
+          br
+
 
 
   

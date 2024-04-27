@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .container
+      h1 Expense Tracker
+      .row
+        .col-md-6
+          .card.mb-3
+            .card-body
+              .section-header Income
+              form#incomeForm
+                label Amount:
+             
+        .col-md-6
+          .card.mb-3
+            .card-body
+              .section-header Expense
+              form#expenseForm
+                label Amount:
+      button.btn.btn-warning.btn-block(type="button") Add Expense     
+      .section
+        .section-header History of Expenses
+        table.history.table.table-striped.table-hover.table-bordered
+          thead
+            tr
+              th Date
+              th Amount
+              th Type
+          tbody#expenseHistory
+          
