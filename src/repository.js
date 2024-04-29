@@ -1,4 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb');
+const IncomeExpense = require("./incomeExpense");
 
 const url = process.env.MONGODB_URL;
 const client = new MongoClient(url);
@@ -13,3 +14,19 @@ async function connect() {
 }
 
 connect();
+
+const expenseRepository = {
+    /* Find all the history of expenses */
+    findAll: async () => {
+      let incomeExpenseList = [];
+      const expenseCollection = client.db('expense_tracker_database').collection('expenses');
+      const expenseDataFromDB = expenseCollection.find({});
+      for await (const data of expenseDataFromDB) {
+        const incomeExpenseObj = new IncomeExpense(data._id.toString(), data.type, data.category, data.description, data.amount);
+        incomeExpenseList.push(incomeExpenseObj);
+      }
+      return incomeExpenseList;
+    },
+}
+
+module.exports = expenseRepository;

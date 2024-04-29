@@ -23,8 +23,18 @@ block content
         table.history.table.table-striped.table-hover.table-bordered
           thead
             tr
-              th Date
-              th Amount
               th Type
+              th Category
+              th Description 
+              th Amount
           tbody#expenseHistory
+            each exp in data
+              tr
+                td #{exp.type}
+                td #{exp.category}
+                td #{exp.description}
+                td #{exp.amount}
+                td 
+                  a(href='').btn.btn-primary.btn-sm View
+
           
