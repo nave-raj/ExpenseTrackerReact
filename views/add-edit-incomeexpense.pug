@@ -24,5 +24,7 @@ block content
                 label(for="amount") Amount:</label>
                 input#amount.form-control(type="number", name="amount", placeholder="Enter amount")
               div.mb-3
-                a.btn.btn-primary.btn-block.py-2(href="#")
+                a.btn.btn-primary.btn-block.py-2(href=`${actionUrl}`)
                   span.font-weight-bold #{buttonText}
+                a.btn.btn-secondary.btn-block.py-2(href="/expenses")
+                  span.font-weight-bold Go Back
