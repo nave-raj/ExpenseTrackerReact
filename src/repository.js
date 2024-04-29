@@ -27,6 +27,13 @@ const expenseRepository = {
       }
       return incomeExpenseList;
     },
+     /* Find an individual income/expense by id */
+     findById: async (id) => {
+      const expenseCollection = client.db('expense_tracker_database').collection('expenses');
+      const filter = { _id: new ObjectId(id) };
+      const result = await expenseCollection.findOne(filter);
+      return new IncomeExpense(result._id.toString(), result.type, result.category, result.description, result.amount);
+  },
 }
 
 module.exports = expenseRepository;
