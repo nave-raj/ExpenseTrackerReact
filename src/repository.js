@@ -33,7 +33,14 @@ const expenseRepository = {
       const filter = { _id: new ObjectId(id) };
       const result = await expenseCollection.findOne(filter);
       return new IncomeExpense(result._id.toString(), result.type, result.category, result.description, result.amount);
-  },
+    },
+     /* Create Income or Expense */
+     createIncomeExpense: async (data) => {
+      const newData = { type: data.type, category: data.category, description: data.description, amount: data.amount};
+      const expenseCollection = client.db('expense_tracker_database').collection('expenses');
+      const result = await expenseCollection.insertOne(newData);
+      console.log(`Document successfully inserted into the collection with id: ${result.insertedId}`);
+    },
 }
 
 module.exports = expenseRepository;

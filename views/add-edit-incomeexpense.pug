@@ -8,7 +8,7 @@ block content
         h1 #{title}
       .col-md-7
           .form-group.col-lg-12
-            form(action="", method="POST")
+            form(action=actionUrl , method="POST")
               div.mb-3
                 label(for="type") Type:</label>
                 select#type.form-select.form-control(name="type")
@@ -24,7 +24,6 @@ block content
                 label(for="amount") Amount:</label>
                 input#amount.form-control(type="number", name="amount", placeholder="Enter amount")
               div.mb-3
-                a.btn.btn-primary.btn-block.py-2(href=`${actionUrl}`)
-                  span.font-weight-bold #{buttonText}
+                button(type="submit").btn.btn-primary.btn-block.py-2 #{buttonText}
                 a.btn.btn-secondary.btn-block.py-2(href="/expenses")
-                  span.font-weight-bold Go Back
+                  span Go Back
