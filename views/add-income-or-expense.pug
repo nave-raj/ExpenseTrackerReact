@@ -2,20 +2,27 @@ extends layout
 
 block content
   .container
-    h1 #{title}
-    form(action="", method="POST")
-      .form-group
-        label(for="type") Type:</label>
-        select#type.form-control(name="type")
-          option(value="income") Income
-          option(value="expense") Expense
-      .form-group
-        label(for="category") Category:</label>
-        input#category.form-control(type="text", name="category", placeholder="Enter category")
-      .form-group
-        label(for="description") Description:</label>
-        textarea#description.form-control(name="description", rows="3", placeholder="Enter description")
-      .form-group
-        label(for="amount") Amount:</label>
-        input#amount.form-control(type="number", name="amount", placeholder="Enter amount")
-      button.btn.btn-primary(type="submit") #{buttonText}
+    .row.py-5.mt-4.align-items-center
+      .col-md-5.pr-lg-5.mb-5.mb-md-0
+        img(src="/images/income-expense.jpeg", alt="", class="img-fluid mb-3 d-none d-md-block")
+        h1 #{title}
+      .col-md-7
+          .form-group.col-lg-12
+            form(action="", method="POST")
+              div.mb-3
+                label(for="type") Type:</label>
+                select#type.form-select.form-control(name="type")
+                  option(value="income") Income
+                  option(value="expense") Expense
+              div.mb-3
+                label(for="category") Category:</label>
+                input#category.form-control(type="text", name="category", placeholder="Enter category")
+              div.mb-3
+                label(for="description") Description:</label>
+                textarea#description.form-control(name="description", rows="3", placeholder="Enter description")
+              div.mb-5
+                label(for="amount") Amount:</label>
+                input#amount.form-control(type="number", name="amount", placeholder="Enter amount")
+              div.mb-3
+                a.btn.btn-primary.btn-block.py-2(href="#")
+                  span.font-weight-bold #{buttonText}
