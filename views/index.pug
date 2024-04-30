@@ -1,18 +1,14 @@
 extends layout
 
 block content
-  .container-fluid
+  .container-fluid(style="padding-top: 80px;")
     .row
       .col-md-8.offset-md-2
-        img(src="/images/home-page.png", alt="", class="img-fluid mb-3 d-none d-md-block")
-        .text-center
+        .text-center 
+          img(src="/images/home-expense.png", alt="", class="img-fluid mb-3 d-none d-md-block mx-auto", style="max-width: 600px; max-height: 600px;")
           h1.mb-4 #{title}
           p This is a simple application for managing your expenses.
           p Click the button below to view your list of expenses.
           br
           a.btn.btn-primary(href="/expenses") View Your Expenses
           br
-
-
-
-  

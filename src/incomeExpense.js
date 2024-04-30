@@ -7,5 +7,7 @@ class IncomeExpense {
       this.amount = amount;
     }
   }
+
+  
   
   module.exports = IncomeExpense;

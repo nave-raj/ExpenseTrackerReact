@@ -1,28 +1,30 @@
 extends layout
 
 block content
-  .container
-    .card
-      .card-header
-        h5.card-title Expense Details
-      .card-body
-        .form-group.row
-          label.col-form-label.col-sm-2 Type:
-          .col-sm-10
-            p.col-form-label.form-control-plaintext #{incomeExpense.type}
-        .form-group.row
-          label.col-form-label.col-sm-2 Description:
-          .col-sm-10
-            p.col-form-label.form-control-plaintext #{incomeExpense.description}
-        .form-group.row
-          label.col-form-label.col-sm-2 Category:
-          .col-sm-10
-            p.col-form-label.form-control-plaintext #{incomeExpense.category}
-        .form-group.row
-          label.col-form-label.col-sm-2 Amount:
-          .col-sm-10
-            p.col-form-label.form-control-plaintext #{incomeExpense.amount}
-        .form-group.row
-          .col-sm-10.offset-sm-2
-            a.btn.btn-primary(href=`/expenses/${incomeExpense.id}/edit`) Edit
-            a.btn.btn-danger(href=`/expenses/${incomeExpense.id}/delete`) Delete
+  .container(style="height: 90vh; display: flex; justify-content: center; align-items: center;")
+    .row
+      .col-md-5.text-center
+        img(src="/images/home-page.png", alt="Image", class="img-fluid w-100 h-100")
+      .col-md-7.text-center
+        .card
+          .card-header
+            h3.card-title Expense Details
+          .card-body
+            table.table.table-striped
+              tbody
+                tr
+                  th Type:
+                  td #{incomeExpense.type}
+                tr
+                  th Description:
+                  td #{incomeExpense.description}
+                tr
+                  th Category:
+                  td #{incomeExpense.category}
+                tr
+                  th Amount:
+                  td #{incomeExpense.amount}
+            .form-group.row.justify-content-center
+                    a.btn.btn-primary.ml-5(href=`/expenses/${incomeExpense.id}/edit`) Edit
+                    a.btn.btn-danger.ml-5(href=`/expenses/${incomeExpense.id}/delete`) Delete
+                    a.btn.btn-secondary.ml-5(href=`/expenses`) Back

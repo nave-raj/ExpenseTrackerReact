@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -9,6 +8,23 @@ a {
 
 h1 {
   text-align: center;
+}
+
+.btn-pri {
+  background-color: #1f3c88;
+}
+
+.pt-80 {
+  padding-top: 80px;
+}
+
+.btn-sec {
+  background-color: #fac344;
+}
+.navbar {
+  max-height: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container {
