@@ -2,19 +2,27 @@ extends layout
 
 block content
   .container
-        .card
-          .card-header
-            h5.card-title Expense Details
-          .card-body
-            .form-group.row
-                label Type:
-                p #{incomeExpense.type}
-            .form-group.row
-                label Description:
-                p #{incomeExpense.description}
-            .form-group.row
-                label Category:
-                p #{incomeExpense.category}
-            .form-group.row
-                label Amount:
-                p #{incomeExpense.amount}
+    .card
+      .card-header
+        h5.card-title Expense Details
+      .card-body
+        .form-group.row
+          label.col-form-label.col-sm-2 Type:
+          .col-sm-10
+            p.col-form-label.form-control-plaintext #{incomeExpense.type}
+        .form-group.row
+          label.col-form-label.col-sm-2 Description:
+          .col-sm-10
+            p.col-form-label.form-control-plaintext #{incomeExpense.description}
+        .form-group.row
+          label.col-form-label.col-sm-2 Category:
+          .col-sm-10
+            p.col-form-label.form-control-plaintext #{incomeExpense.category}
+        .form-group.row
+          label.col-form-label.col-sm-2 Amount:
+          .col-sm-10
+            p.col-form-label.form-control-plaintext #{incomeExpense.amount}
+        .form-group.row
+          .col-sm-10.offset-sm-2
+            a.btn.btn-primary(href=`/expenses/${incomeExpense.id}/edit`) Edit
+            a.btn.btn-danger(href=`/expenses/${incomeExpense.id}/delete`) Delete

@@ -41,6 +41,23 @@ const expenseRepository = {
       const result = await expenseCollection.insertOne(newData);
       console.log(`Document successfully inserted into the collection with id: ${result.insertedId}`);
     },
+     /* Update an existing Income/Expense */
+     updateExistingIncomeExpense: async (data) => {
+        const expenseCollection = client.db('express_tracker_database').collection('expenses');
+        console.log(expenseCollection);
+        const filter = { _id: new ObjectId(data.id) };
+        const document = {
+          $set: {
+            type: data.type, 
+            category: data.category, 
+            description: data.description, 
+            amount: data.amount
+          },
+        };
+        const result = await expenseCollection.updateOne(filter, document);
+        console.log(`Document successfully updated into the collection`);
+    },
+
 }
 
 module.exports = expenseRepository;

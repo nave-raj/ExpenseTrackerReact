@@ -24,6 +24,13 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+/* GET Edit Income/Expense Page */
+router.get('/:id/edit', async (req, res, next) => {
+  const data = await expenseRepository.findById(req.params.id);
+  res.render('add-edit-incomeexpense',{title: 'Edit Income or Expense', buttonText: 'Edit Income or Expense', exp: data, actionURL: 'edit'});
+});
+
+
 /* POST Income / Expenses from Create Page */
 router.post('/create-income-expense', (req, res, next) => {
   const { type, category, description, amount } = req.body;
@@ -31,6 +38,15 @@ router.post('/create-income-expense', (req, res, next) => {
   console.log(incomeExpenseData);
   expenseRepository.createIncomeExpense(incomeExpenseData);
   res.redirect('/expenses');
+});
+
+/* POST Income / Expenses from Edit Page */
+router.post('/:id/edit',(req, res, next) => {
+    const {type, category, description, amount} = req.body;
+    const editedData= { id: req.params.id, type: type, category: category, description: description, amount: parseFloat(amount)};
+    console.log(editedData);
+    expenseRepository.updateExistingIncomeExpense(editedData);
+    res.redirect('/expenses');
 });
 
 module.exports = router;
