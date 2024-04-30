@@ -43,7 +43,7 @@ const expenseRepository = {
     },
      /* Update an existing Income/Expense */
      updateExistingIncomeExpense: async (data) => {
-        const expenseCollection = client.db('express_tracker_database').collection('expenses');
+        const expenseCollection = client.db('expense_tracker_database').collection('expenses');
         console.log(expenseCollection);
         const filter = { _id: new ObjectId(data.id) };
         const document = {
@@ -57,7 +57,17 @@ const expenseRepository = {
         const result = await expenseCollection.updateOne(filter, document);
         console.log(`Document successfully updated into the collection`);
     },
-
+    /* Delete a income or expense by id */
+     deleteById: async (id) => {
+        const expenseCollection = client.db('expense_tracker_database').collection('expenses');
+        const filter = { _id: new ObjectId(id) };
+        const result = await expenseCollection.deleteOne(filter);
+        if(result.deletedCount === 1){
+          console.log('One Document Successfully Deleted');
+        } else {
+          console.log('Deleted 0 documents. No documents matched the query');
+        }
+    },
 }
 
 module.exports = expenseRepository;

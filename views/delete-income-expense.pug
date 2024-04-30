@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div.container-fluid
+    div.row.align-items-center.justify-content-center.vh-100
+      div.col-6.text-center.card.shadow-lg
+        div.card-body.p-4.m-4
+          p.h5.mb-4 Are you sure you want to delete the #{exp.type} of #{exp.category}?
+          form(method='POST' action=`/expenses/${exp.id}/delete`)
+            button(type='submit' class='btn btn-danger mr-3') Confirm Delete
+            a(href=`/expenses/${exp.id}` class='btn btn-primary') Cancel
