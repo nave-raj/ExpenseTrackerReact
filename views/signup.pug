@@ -10,14 +10,20 @@ block content
               h3.mb-5.text-center Sign Up
               form(action="/register" method="POST")
                 .form-group
+                  if error 
+                    label.text-danger #{error}
+                  br
                   label(for="name") Name:
                   input#name.form-control(type="text", name="name", placeholder="Enter your name" required)
                 .form-group
-                  label(for="username") Username:
-                  input#username.form-control(type="text", name="username", placeholder="Enter a username" required)
+                  label(for="email") Email:
+                  input#email.form-control(type="email", name="email", placeholder="Enter Email" required)
                 .form-group
                   label(for="password") Password:
-                  input#password.form-control(type="password", name="password", placeholder="Enter a password" required)
+                  input#password.form-control(type="password", name="password", placeholder="Enter password" required)
+                .form-group
+                  label(for="confirmpassword") Confirm Password:
+                  input#confirmpassword.form-control(type="password", name="confirmpassword", placeholder="Enter confirm password" required)
                 button.btn.btn-primary.btn-block.rounded-pill.mt-5(type="submit", style="background-color: #1f3c88;") Register
                 p.text-center.mt-3
                   | Already have an account? 

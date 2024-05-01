@@ -50,7 +50,31 @@ router.post('/login/password', passport.authenticate('local',{
   failureRedirect: '/login',
 }));
 
-/* POST logout */
+/* POST Register page */
+router.post('/register', async function(req, res, next) {
+  try {
+    if (req.body.password !== req.body.confirmpassword) {
+      return res.render('signup', { error: "Passwords do not match!" });
+    }    
+    let newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    let result = await newUser.save();
+    req.login(result, function(error) {
+      if (error) {
+        return next(error);
+      }
+      return res.redirect('/login');
+    });
+  } catch (error) {
+    return res.render('signup', { error: "Please enter valid Email" });
+  }
+});
+
+/* POST logout Page */
 router.post('/logout', function(req, res, next){
   req.logout(function( error ){
     if(error){
