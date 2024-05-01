@@ -41,17 +41,17 @@ app.use(session({
 
 app.use(passport.authenticate('session'));
 
+/* for route protection */
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
 app.use('/', indexRouter);
-app.use('/expenses', expensesRouter);
 app.use('/', authRouter);
-
-// let newUser =  new User({
-//   name: 'Test User',
-//   email: 'naveena@iit.edu',
-//   password: 'password',
-// });
-
-// newUser.save();
+app.use('/expenses', isAuthenticated, expensesRouter);
 
 
 

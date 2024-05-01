@@ -6,39 +6,60 @@ const { body, validationResult } = require('express-validator');
 
 /* GET all Income Expense listing */
 router.get('/', async (req, res, next) => {
-  const incomeExpenseData = await expenseRepository.findAll();
-  const calcObj = await calculateIncomeExpense.calculate();
-  const totalIncome = calcObj['totalIncome'];
-  const totalExpense = calcObj['totalExpense'];
-  res.render('view-all-expenses',{ data: incomeExpenseData, income: totalIncome, expense: totalExpense});
+  if (req.isAuthenticated()) {
+    const incomeExpenseData = await expenseRepository.findAll();
+    const userName = req.user.name;
+    const calcObj = await calculateIncomeExpense.calculate();
+    const totalIncome = calcObj['totalIncome'];
+    const totalExpense = calcObj['totalExpense'];
+    res.render('view-all-expenses',{ data: incomeExpenseData, income: totalIncome, expense: totalExpense, user: userName});
+  } else {
+    res.redirect('/login');
+  }
 });
 
 /* GET Create Income Expense Page */
 router.get('/create-income-expense', (req, res, next) => {
-  res.render('add-edit-incomeexpense',{title: 'Create a New Income or Expense', buttonText: 'Add Income or Expense', actionURL: 'create-income-expense'});
+  if (req.isAuthenticated()) {
+    res.render('add-edit-incomeexpense',{title: 'Create a New Income or Expense', buttonText: 'Add Income or Expense', actionURL: 'create-income-expense'});
+  } else {
+    res.redirect('/login');
+  }
 });
 
 /* GET individual income or expense by id */
 router.get('/:id', async (req, res, next) => {
-  const incomeExpenseById = await expenseRepository.findById(req.params.id);
-  console.log(incomeExpenseById);
-  if(incomeExpenseById){
-    res.render('view-incomeexpense', { incomeExpense: incomeExpenseById});
+  if (req.isAuthenticated()) {
+    const incomeExpenseById = await expenseRepository.findById(req.params.id);
+    console.log(incomeExpenseById);
+    if(incomeExpenseById){
+      res.render('view-incomeexpense', { incomeExpense: incomeExpenseById});
+    } else {
+      res.redirect('/expenses');
+    }
   } else {
-    res.redirect('/expenses');
+    res.redirect('/login');
   }
 });
 
 /* GET Edit Income/Expense Page */
 router.get('/:id/edit', async (req, res, next) => {
-  const data = await expenseRepository.findById(req.params.id);
-  res.render('add-edit-incomeexpense',{title: 'Edit Income or Expense', buttonText: 'Edit Income or Expense', exp: data, actionURL: 'edit'});
+  if (req.isAuthenticated()) {
+    const data = await expenseRepository.findById(req.params.id);
+    res.render('add-edit-incomeexpense',{title: 'Edit Income or Expense', buttonText: 'Edit Income or Expense', exp: data, actionURL: 'edit'});
+  } else {
+    res.redirect('/login');
+  }
 });
 
 /* GET Income/Expense Confirm Delete Page */
 router.get('/:id/delete', async (req, res, next) => {
-  const data = await expenseRepository.findById(req.params.id);
-  res.render('delete-income-expense', { exp: data });
+  if (req.isAuthenticated()) {
+    const data = await expenseRepository.findById(req.params.id);
+    res.render('delete-income-expense', { exp: data });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 

@@ -37,6 +37,10 @@ passport.deserializeUser(function(user, done){
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
+router.get('/', function(req, res, next) {
+    res.render('login');
+});
+
 
 /* GET register page. */
 router.get('/signup', function(req, res, next) {

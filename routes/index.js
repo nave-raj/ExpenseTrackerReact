@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Expense Tracker Application' });
+  if(req.isAuthenticated()){
+    res.render('index', { title: 'Expense Tracker Application' });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 module.exports = router;
