@@ -4,9 +4,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var User = require('./models/User')
+var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@expensetrackercluster.dcfwbin.mongodb.net/user?retryWrites=true&w=majority&appName=expensetrackercluster`)
+.then(() => {
+  console.log('User Database connection successfull');
+})
+.catch((err) => {
+  console.log('Database Connection error', err);
+});
 
 var indexRouter = require('./routes/index');
 var expensesRouter = require('./routes/expenses');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -20,8 +33,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret:'my session',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.authenticate('session'));
+
 app.use('/', indexRouter);
 app.use('/expenses', expensesRouter);
+app.use('/', authRouter);
+
+// let newUser =  new User({
+//   name: 'Test User',
+//   email: 'naveena@iit.edu',
+//   password: 'password',
+// });
+
+// newUser.save();
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
