@@ -25,3 +25,13 @@ This project will allow users to perform Create, Read, Update, and Delete operat
 ## Test Login Credentials
 * Username : naveena@iit.edu
 * Password : password
+
+## Output ScreenShots
+
+* Login Landing Page
+<img width="1710" alt="image" src="https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject/assets/129906985/c61e0439-f81f-4183-a3b8-09d6c300dd18">
+
+* Sign Up Page for New User
+  <img width="1709" alt="image" src="https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject/assets/129906985/acf3e3e3-fb09-4a53-addf-f2864cbcb66f">
+
+
