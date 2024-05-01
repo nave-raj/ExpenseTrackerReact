@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const expenseRepository = require('../src/repository');
 const calculateIncomeExpense = require('../src/calculateIncomeExpense');
+const { body, validationResult } = require('express-validator');
 
 /* GET all movie listing */
 router.get('/', async (req, res, next) => {
@@ -9,7 +10,6 @@ router.get('/', async (req, res, next) => {
   const calcObj = await calculateIncomeExpense.calculate();
   const totalIncome = calcObj['totalIncome'];
   const totalExpense = calcObj['totalExpense'];
-  console.log('calccccc'+ calcObj);
   res.render('view-all-expenses',{ data: incomeExpenseData, income: totalIncome, expense: totalExpense});
 });
 
@@ -43,7 +43,14 @@ router.get('/:id/delete', async (req, res, next) => {
 
 
 /* POST Income / Expenses from Create Page */
-router.post('/create-income-expense', (req, res, next) => {
+router.post('/create-income-expense', body('type').trim().escape().notEmpty().withMessage('Type Cannot Be Empty!'), 
+            body('category').trim().escape().notEmpty().withMessage('Category Cannot be Empty!'),
+            body('amount').trim().escape().notEmpty().withMessage('Amount cannot be Empty!').isNumeric().withMessage('Enter a valid Amount'),
+            async (req, res, next) => {
+  const result = validationResult(req);
+  if(!result.isEmpty()){
+    res.render('add-edit-incomeexpense',{title: 'Create Income or Expense', buttonText: 'Create Income or Expense', actionURL: 'create-income-expense', msg: result.array()});
+  }
   const { type, category, description, amount } = req.body;
   const incomeExpenseData = { type: type, category: category, description: description, amount: amount};
   console.log(incomeExpenseData);
@@ -52,8 +59,18 @@ router.post('/create-income-expense', (req, res, next) => {
 });
 
 /* POST Income / Expenses from Edit Page */
-router.post('/:id/edit',(req, res, next) => {
-    const {type, category, description, amount} = req.body;
+router.post('/:id/edit', body('type').trim().escape().notEmpty().withMessage('Type Cannot Be Empty!'), 
+           body('category').trim().escape().notEmpty().withMessage('Category Cannot be Empty!'),
+           body('amount').trim().escape().notEmpty().withMessage('Amount cannot be Empty!').isNumeric().withMessage('Enter a valid Amount'),
+           async (req, res, next) => {
+    const result = validationResult(req);
+    if(!result.isEmpty()){
+      res.render('add-edit-incomeexpense',{title: 'Edit Income or Expense', buttonText: 'Edit Income or Expense', actionURL: 'edit', msg: result.array()});
+    }
+    const {type, category, amount, description} = req.body;
+    if (!type || !category || !amount) {
+      return res.status(400).json({ message: 'Please check your type, category and amount' });
+    }
     const editedData= { id: req.params.id, type: type, category: category, description: description, amount: parseFloat(amount)};
     console.log(editedData);
     expenseRepository.updateExistingIncomeExpense(editedData);
