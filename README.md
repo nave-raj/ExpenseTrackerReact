@@ -56,6 +56,7 @@ This project will allow users to perform Create, Read, Update, and Delete operat
 <img width="1703" alt="image" src="https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject/assets/129906985/11249074-3ed0-4634-a949-c3c458bf9125">
 
 ### Screenshot of expenses collection in expensetrackerdatabase model in MongoDB Atlas
+<img width="1710" alt="image" src="https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject/assets/129906985/1d49ec2b-b99d-4534-8738-3d746851f3cb">
 
 ### Express validations on Input fields
 <img width="1703" alt="image" src="https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject/assets/129906985/037ad76a-a413-423d-b685-fcde7c5daf3f">
