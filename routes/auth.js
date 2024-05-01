@@ -3,6 +3,7 @@ var router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('../models/User');
+const { body, validationResult } = require('express-validator');
 
 async function localAuthUser(email, password, done){
   try{
@@ -55,11 +56,19 @@ router.post('/login/password', passport.authenticate('local',{
 }));
 
 /* POST Register page */
-router.post('/register', async function(req, res, next) {
+router.post('/register',body('name').trim().escape().notEmpty().withMessage('Name Cannot Be Empty!'), 
+    body('email').trim().escape().notEmpty().withMessage('EmailCannot be Blank!').isEmail().withMessage('Enter a valid Email'),
+    body('password').trim().escape().notEmpty().withMessage('password cannot be Blank!'),
+    body('confirmpassword').trim().escape().notEmpty().withMessage('Confirm password cannot be Blank!'),
+    async function(req, res, next) {
   try {
     if (req.body.password !== req.body.confirmpassword) {
       return res.render('signup', { error: "Passwords do not match!" });
-    }    
+    }
+    const valResult = validationResult(req);
+    if(!valResult.isEmpty()){
+      return res.render('signup', { error: "Please fill out the fields carefully!" });
+    }     
     let newUser = new User({
       name: req.body.name,
       email: req.body.email,
