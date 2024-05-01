@@ -7,23 +7,23 @@ block content
         img(src="/images/income-expense.jpeg", alt="", class="img-fluid mb-3 d-none d-md-block")
         h1 #{title}
       .col-md-7
-          .form-group.col-lg-12
-            form(action=actionUrl , method="POST")
-              div.mb-3
-                label(for="type") Type:</label>
-                select#type.form-select.form-control(name="type", value = (exp && exp.type) ? exp.type : "")
-                  option(value="income") Income
-                  option(value="expense") Expense
-              div.mb-3
-                label(for="category") Category:</label>
-                input#category.form-control(type="text", name="category", placeholder="Enter category", value = (exp && exp.category) ? exp.category : "")
-              div.mb-3
-                label(for="description") Description:</label>
-                textarea#description.form-control(name="description", rows="3", placeholder="Enter description") #{exp && exp.description? exp.description : ''}
-              div.mb-5
-                label(for="amount") Amount:</label>
-                input#amount.form-control(type="number", name="amount", placeholder="Enter amount", value = (exp && exp.amount) ? exp.amount : "")
-              div.mb-3
-                button(type="submit").btn.btn-primary.btn-block.py-2 #{buttonText}
-                a.btn.btn-secondary.btn-block.py-2(href="/expenses")
-                  span Go Back
+        .form-group.col-lg-12
+          form(action=actionUrl, method="POST")
+            div.mb-3
+              label(for="type") Type:</label>
+              select#type.form-select.form-control(name="type")
+                option(value="income" selected=exp && exp.type==="income") Income
+                option(value="expense" selected=exp && exp.type==="expense") Expense
+            div.mb-3
+              label(for="category") Category:</label>
+              input#category.form-control(type="text", name="category", placeholder="Enter category", value=exp && exp.category ? exp.category : "")
+            div.mb-3
+              label(for="description") Description:</label>
+              textarea#description.form-control(name="description", rows="3", placeholder="Enter description") #{exp && exp.description ? exp.description : ''}
+            div.mb-5
+              label(for="amount") Amount:</label>
+              input#amount.form-control(type="number", name="amount", placeholder="Enter amount", value=exp && exp.amount ? exp.amount : "")
+            div.mb-3
+              button(type="submit").btn.btn-primary.btn-block.py-2 #{buttonText}
+              a.btn.btn-secondary.btn-block.py-2(href="/expenses")
+                span Go Back
