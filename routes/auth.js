@@ -38,6 +38,12 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+/* GET register page. */
+router.get('/signup', function(req, res, next) {
+    res.render('signup');
+});
+
+
 /* POST local login */
 router.post('/login/password', passport.authenticate('local',{
   successRedirect: '/home',

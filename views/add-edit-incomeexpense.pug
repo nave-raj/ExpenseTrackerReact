@@ -28,6 +28,6 @@ block content
               label(for="amount") Amount:</label>
               input#amount.form-control(type="number", name="amount", placeholder="Enter amount", value=exp && exp.amount ? exp.amount : "")
             div.mb-3
-              button(type="submit").btn.btn-primary.btn-block.py-2 #{buttonText}
-              a.btn.btn-secondary.btn-block.py-2(href="/expenses")
+              button(type="submit", style="background-color: #1f3c88; border-color: #1f3c88").btn.btn-primary.btn-block.py-2 #{buttonText}
+              a.btn.btn-secondary.btn-block.py-2(href="/expenses", style="background-color: #fac344; border-color: #fac344")
                 span Go Back

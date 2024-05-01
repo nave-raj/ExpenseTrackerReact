@@ -7,8 +7,8 @@ block content
         img(src="/images/home-page.png", alt="Image", class="img-fluid w-100 h-100")
       .col-md-7.text-center
         .card
-          .card-header
-            h3.card-title Expense Details
+          .card-header(style="background-color: #1f3c88; border-color: #1f3c88")
+            h3.card-title.text-white Expense Details
           .card-body
             table.table.table-striped
               tbody
@@ -25,6 +25,6 @@ block content
                   th Amount:
                   td #{incomeExpense.amount}
             .form-group.row.justify-content-center
-                    a.btn.btn-primary.ml-5(href=`/expenses/${incomeExpense.id}/edit`) Edit
+                    a.btn.btn-primary.ml-5(href=`/expenses/${incomeExpense.id}/edit`, style="background-color: #1f3c88; border-color: #1f3c88") Edit
                     a.btn.btn-danger.ml-5(href=`/expenses/${incomeExpense.id}/delete`) Delete
                     a.btn.btn-secondary.ml-5(href=`/expenses`) Back

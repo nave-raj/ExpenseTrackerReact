@@ -1,0 +1,24 @@
+extends login-layout
+
+block content
+  section.vh-100(style="background-image: linear-gradient(to right, #ff7e5f, #feb47b);")
+    .container.py-5.h-100
+      .row.d-flex.justify-content-center.align-items-center.h-100
+        .col-12.col-md-8.col-lg-6.col-xl-5
+          .card.shadow-2-strong(style="border-radius: 1rem;")
+            .card-body.p-5
+              h3.mb-5.text-center Sign Up
+              form(action="/register" method="POST")
+                .form-group
+                  label(for="name") Name:
+                  input#name.form-control(type="text", name="name", placeholder="Enter your name" required)
+                .form-group
+                  label(for="username") Username:
+                  input#username.form-control(type="text", name="username", placeholder="Enter a username" required)
+                .form-group
+                  label(for="password") Password:
+                  input#password.form-control(type="password", name="password", placeholder="Enter a password" required)
+                button.btn.btn-primary.btn-block.rounded-pill.mt-5(type="submit", style="background-color: #1f3c88;") Register
+                p.text-center.mt-3
+                  | Already have an account? 
+                  a(href="/login") Log In

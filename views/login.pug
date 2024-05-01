@@ -1,20 +1,21 @@
-extends layout
+extends login-layout
 
-block content 
-   
-    .container.mt-5
-        .row.justify-content-center
-            .col-md-6
-            .card
-                .card-header.text-center
-                h3 Login
-                .card-body
-                form(action="/login/password" method="POST")
-                    .form-group
-                    label(for="email") Email:
-                    input#email.form-control(type="email", name="email", placeholder="Enter email" required)
-                    .form-group
-                    label(for="password") Password:
-                    input#password.form-control(type="password", name="password", placeholder="Enter password" required)
-                    button.btn.btn-primary.btn-block(type="submit") Sign In
-
+block content
+  section.vh-100(style="background-image: linear-gradient(to right, #ff7e5f, #feb47b);")
+    .container.py-5.h-100
+      .row.d-flex.justify-content-center.align-items-center.h-100
+        .col-12.col-md-8.col-lg-6.col-xl-5
+          .card.shadow-2-strong(style="border-radius: 1rem;")
+            .card-body.p-5
+              h3.mb-5.text-center Log In
+              form(action="/login/password" method="POST")
+                .form-group
+                  label(for="email") Email:
+                  input#email.form-control(type="email", name="email", placeholder="Enter email" required)
+                .form-group
+                  label(for="password") Password:
+                  input#password.form-control(type="password", name="password", placeholder="Enter password" required)
+                button.btn.btn-primary.btn-block.rounded-pill.mt-5(type="submit", style="background-color: #1f3c88;") Sign In
+                p.text-center.mt-3
+                  | Don't have an account? 
+                  a(href="/signup") Register

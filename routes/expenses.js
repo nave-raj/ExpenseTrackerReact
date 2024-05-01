@@ -4,7 +4,7 @@ const expenseRepository = require('../src/repository');
 const calculateIncomeExpense = require('../src/calculateIncomeExpense');
 const { body, validationResult } = require('express-validator');
 
-/* GET all movie listing */
+/* GET all Income Expense listing */
 router.get('/', async (req, res, next) => {
   const incomeExpenseData = await expenseRepository.findAll();
   const calcObj = await calculateIncomeExpense.calculate();
@@ -76,7 +76,7 @@ router.post('/:id/edit', body('type').trim().escape().notEmpty().withMessage('Ty
     }
 });
 
-/* POST Movie Delete */
+/* POST Income Expense Delete */
 router.post('/:id/delete', async (req, res, next) => {
   const result = await expenseRepository.deleteById(req.params.id);
   res.redirect('/expenses');
