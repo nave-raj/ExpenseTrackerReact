@@ -6,7 +6,7 @@
 
 
 ## Project Description
-
+This project will allow users to perform Create, Read, Update, and Delete operations on their income or expenses, providing a user-friendly interface for managing their day to day financial transactions. It also keeps track of the total income and expenses made along with the history. I have generated the project with Express JS with pug template. The database I have used is MongoDB and I have used passportJS for authentication.
 
 ## Development Environment
 * Operating System: Mac OS
