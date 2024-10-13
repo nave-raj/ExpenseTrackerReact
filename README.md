@@ -1,9 +1,4 @@
 # Income Expense Tracker Project README
-* Name: Naveena Kandasamy Rajkumar
-* Email: nkandasamyrajkumar@hawk.iit.edu
-* Git Repository URL: https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject
-* Class: ITMD 542
-
 
 ## Project Description
 This project will allow users to perform Create, Read, Update, and Delete operations on their income or expenses, providing a user-friendly interface for managing their day to day financial transactions. It also keeps track of the total income and expenses made along with the history. I have generated the project with Express JS with pug template. The database I have used is MongoDB and I have used passportJS for authentication.
@@ -12,7 +7,6 @@ This project will allow users to perform Create, Read, Update, and Delete operat
 * Operating System: Mac OS
 * Node.js Version: v20.10.0
 * Npm Version: 10.2.3
-* Editor Used: Visual Studio Code
 
 ## Installation/Running Instructions
 * Clone the repository from https://github.com/nave-raj/ITMD542_ExpenseTracker_FinalProject
